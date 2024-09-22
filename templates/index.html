@@ -1,0 +1,32 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+<title>Index</title>
+{% endblock %}
+
+{% block content %}
+
+{% if alert_message.status == "success" %}
+    <div class="alert alert-success" role="alert">
+      {{ alert_message.message }}
+    </div>
+{% endif %}
+
+{% if alert_message.status == "fail" %}
+  <div class="alert alert-danger" role="alert">
+    {{ alert_message.message }}
+  </div>
+{% endif %}
+    <h1>Welcome</h1>
+</br>
+    <form action="{{ url_for('check_balance') }}" method="POST">
+        <div class="mb-3">
+            <label for="username">Username:</label>
+            <input class="form-control" type="text" id="username" name="username" required>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-success" type="submit">Check Balance</button>
+            <a href="{{ url_for('create_accout') }}" class="btn btn-primary">Create Account</a>
+        </div>
+    </form>
+{% endblock %}

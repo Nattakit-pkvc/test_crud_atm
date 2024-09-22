@@ -1,0 +1,48 @@
+{% extends "base_template.html" %}
+
+{% block title %}
+<title>Check Balance</title>
+{% endblock %}
+
+{% block content %}
+
+{% if alert_message.status == "success" %}
+    <div class="alert alert-success" role="alert">
+      {{ alert_message.message }}
+    </div>
+{% endif %}
+
+{% if alert_status %}
+    <div class="alert alert-{{ alert_status }}">
+        {{ alert_message }}
+    </div>
+{% endif %}
+{% if result %}
+    <h2>Account Details</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Account Number</th>
+                <th>Username</th>
+                <th>Balance</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ result.account_number }}</td>
+                <td>{{ result.username }}</td>
+                <td>{{ result.balance }}</td>
+                <td>
+                    <a href="#" class="btn btn-success">Deposit</a>
+                    <a href="#" class="btn btn-warning">Withdraw</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="container justify-content-end">
+    <a href="{{ url_for('logout') }}" class="btn btn-danger ">Logout</a>
+    </div>
+{% endif %}
+{% endblock %}
